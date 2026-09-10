@@ -1,0 +1,14 @@
+# Nunca subir credenciales reales
+.env
+.env.local
+*.pem
+*.key
+
+# Artefactos de compilacion
+target/
+node_modules/
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db

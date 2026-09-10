@@ -1,0 +1,38 @@
+/* elemento firma de aurumcore: asiento por partida doble */
+.as-cab{display:flex;align-items:center;gap:16px;padding:11px 14px;border-bottom:var(--bd-fuerte);
+  background:var(--n-025)}
+.as-cab .id{font-family:var(--mono);font-size:var(--fs-md);font-weight:600;letter-spacing:-.02em}
+.as-cab .campo{display:flex;flex-direction:column;gap:1px}
+.as-cab .campo i{font-style:normal;font-size:9px;letter-spacing:.09em;color:var(--n-500);font-weight:600}
+.as-cab .campo b{font-weight:500;font-size:var(--fs-sm)}
+.sello{border-radius:var(--r);padding:2px 7px;font-size:var(--fs-xs);font-weight:600;
+  border:1px solid var(--abono);color:var(--abono);background:var(--abono-bg)}
+.sello.idem{border-color:var(--n-300);color:var(--n-700);background:var(--n-050);font-weight:500}
+/* dos columnas que siempre cuadran */
+.as-tab{width:100%;border-collapse:collapse}
+.as-tab thead th{height:26px;padding:0 14px;font-size:9px;letter-spacing:.09em;color:var(--n-500);
+  font-weight:600;border-bottom:var(--bd-fuerte);text-align:left;background:var(--n-000)}
+.as-tab thead th.r{text-align:right}
+.as-tab thead th.dh{background:var(--n-050);border-left:var(--bd);width:132px}
+.as-tab tbody td{height:34px;padding:0 14px;border-bottom:var(--bd);font-size:var(--fs)}
+.as-tab tbody td.dh{border-left:var(--bd);background:#FCFCFB}
+.as-tab tbody tr:last-child td{border-bottom:var(--bd-fuerte)}
+.cuenta-c{font-family:var(--mono);font-size:var(--fs-sm);color:var(--n-500);width:64px}
+.d{color:var(--cargo);font-weight:500}
+.h{color:var(--abono);font-weight:500}
+.vacio{color:var(--n-300)}
+/* franja de cuadre: la suma siempre es cero */
+.cuadre{display:flex;align-items:center;gap:0;background:var(--n-900);color:var(--n-300);
+  font-size:var(--fs-sm)}
+.cuadre .et{padding:0 14px;height:38px;display:flex;align-items:center;gap:7px;
+  font-size:var(--fs-xs);letter-spacing:.06em;color:#8A817A;font-weight:600;flex:1}
+.cuadre .tot{width:132px;padding:0 14px;height:38px;display:flex;align-items:center;
+  justify-content:flex-end;border-left:1px solid #3A342F;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;color:#fff;font-weight:500}
+.cuadre .res{padding:0 14px;height:38px;display:flex;align-items:center;gap:7px;
+  border-left:1px solid #3A342F;background:#12403C;color:#7FD9CF;font-family:var(--mono);
+  font-weight:600}
+.cuadre .res s{text-decoration:none;color:#4FBFAF}
+.nota{padding:10px 14px;border-top:var(--bd);color:var(--n-500);font-size:var(--fs-sm);
+  background:var(--n-025)}
+.nota b{color:var(--n-800);font-weight:500}

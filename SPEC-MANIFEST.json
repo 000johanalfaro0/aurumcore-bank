@@ -1,0 +1,259 @@
+{
+  "id": 9,
+  "slug": "aurumcore-bank",
+  "stack": 3,
+  "status": "SPECIFIED",
+  "application_status": "NOT_IMPLEMENTED",
+  "features": {
+    "ai": false,
+    "n8n": false,
+    "java": true,
+    "python": false
+  },
+  "documents": [
+    "docs/01-ARQUITECTURA.md",
+    "docs/02-SEGURIDAD-TENANCY.md",
+    "docs/03-DATOS.md",
+    "docs/04-API.md",
+    "docs/05-FRONTEND.md",
+    "docs/06-PROCESOS.md",
+    "docs/07-PRUEBAS.md",
+    "docs/08-PLAN.md",
+    "docs/09-OPERACION.md",
+    "docs/10-ACEPTACION.md"
+  ],
+  "modules": [
+    {
+      "name": "Clientes",
+      "route": "/clientes",
+      "resource": "customers",
+      "readRoles": [
+        "TELLER",
+        "ACCOUNT_AUDITOR"
+      ],
+      "actions": [
+        {
+          "label": "Crear cliente",
+          "method": "POST",
+          "path": "/customers",
+          "input": "external_ref,name",
+          "role": "TELLER",
+          "effect": "Crea titular activo",
+          "error": "409 referencia duplicada"
+        }
+      ]
+    },
+    {
+      "name": "Cuentas y saldos",
+      "route": "/cuentas",
+      "resource": "ledger-accounts",
+      "readRoles": [
+        "TELLER",
+        "TREASURY_APPROVER",
+        "ACCOUNT_AUDITOR"
+      ],
+      "actions": [
+        {
+          "label": "Abrir cuenta",
+          "method": "POST",
+          "path": "/ledger-accounts",
+          "input": "customer_id,code,currency",
+          "role": "TELLER",
+          "effect": "Cuenta de cliente con saldo 0 y no sobregiro",
+          "error": "409 código duplicado"
+        }
+      ]
+    },
+    {
+      "name": "Transferencias",
+      "route": "/transferencias",
+      "resource": "transfers",
+      "readRoles": [
+        "TELLER",
+        "TREASURY_APPROVER",
+        "ACCOUNT_AUDITOR"
+      ],
+      "actions": [
+        {
+          "label": "Confirmar transferencia",
+          "method": "POST",
+          "path": "/transfers",
+          "input": "source_account_id,destination_account_id,amount,currency",
+          "role": "TELLER",
+          "effect": "Asiento doble y saldos confirmados atómicamente",
+          "error": "409 INSUFFICIENT_AVAILABLE_BALANCE"
+        },
+        {
+          "label": "Solicitar reverso",
+          "method": "POST",
+          "path": "/transfers/{id}/reversal-requests",
+          "input": "reason",
+          "role": "TELLER",
+          "effect": "Abre solicitud, sin borrar original",
+          "error": "409 reverso existente"
+        }
+      ]
+    },
+    {
+      "name": "Retenciones",
+      "route": "/retenciones",
+      "resource": "holds",
+      "readRoles": [
+        "TELLER",
+        "TREASURY_APPROVER",
+        "ACCOUNT_AUDITOR"
+      ],
+      "actions": [
+        {
+          "label": "Crear retención",
+          "method": "POST",
+          "path": "/holds",
+          "input": "account_id,amount,expires_at,reference",
+          "role": "TELLER",
+          "effect": "Reduce disponible sin cambiar contable",
+          "error": "409 disponible insuficiente"
+        },
+        {
+          "label": "Liberar retención",
+          "method": "POST",
+          "path": "/holds/{id}/release",
+          "input": "reason,expected_version",
+          "role": "TELLER",
+          "effect": "Libera una vez sin crear asiento de dinero",
+          "error": "409 retención consumida"
+        }
+      ]
+    },
+    {
+      "name": "Ajustes y reversos",
+      "route": "/aprobaciones",
+      "resource": "adjustment-requests",
+      "readRoles": [
+        "TELLER",
+        "TREASURY_APPROVER",
+        "ACCOUNT_AUDITOR"
+      ],
+      "actions": [
+        {
+          "label": "Solicitar ajuste",
+          "method": "POST",
+          "path": "/adjustment-requests",
+          "input": "account_id,counterpart_account_id,amount,reason",
+          "role": "TELLER",
+          "effect": "PENDING_APPROVAL con propuesta equilibrada",
+          "error": "422 contrapartida ausente"
+        },
+        {
+          "label": "Aprobar ajuste",
+          "method": "POST",
+          "path": "/adjustment-requests/{id}/approve",
+          "input": "expected_version,reason",
+          "role": "TREASURY_APPROVER",
+          "effect": "Publica asiento y proyecciones una vez",
+          "error": "403 autoaprobación"
+        },
+        {
+          "label": "Aprobar reverso",
+          "method": "POST",
+          "path": "/transfers/{id}/approve-reversal",
+          "input": "expected_version,reason",
+          "role": "TREASURY_APPROVER",
+          "effect": "Nuevo asiento inverso tras comprobar fondos y solicitud ajena",
+          "error": "409 fondos insuficientes para reverso"
+        }
+      ]
+    },
+    {
+      "name": "Libro mayor y conciliación",
+      "route": "/libro-mayor",
+      "resource": "journal-entries",
+      "readRoles": [
+        "ACCOUNT_AUDITOR",
+        "TREASURY_APPROVER"
+      ],
+      "actions": [
+        {
+          "label": "Conciliar saldos",
+          "method": "POST",
+          "path": "/reconciliation-runs",
+          "input": "as_of",
+          "role": "ACCOUNT_AUDITOR",
+          "effect": "Recalcula desde apuntes bajo snapshot y reporta diferencias",
+          "error": "409 conciliación en curso"
+        },
+        {
+          "label": "Exportar libro",
+          "method": "POST",
+          "path": "/exports",
+          "input": "kind=ledger,from,to",
+          "role": "ACCOUNT_AUDITOR",
+          "effect": "Exportación privada con referencia de corte",
+          "error": "422 rango excesivo"
+        }
+      ]
+    },
+    {
+      "name": "Configuración de negocio",
+      "route": "/configuracion/negocio",
+      "resource": "business-settings",
+      "readRoles": [
+        "ADMIN",
+        "OWNER"
+      ],
+      "actions": [
+        {
+          "label": "Configurar cuenta de contrapartida",
+          "method": "POST",
+          "path": "/ledger-counterpart-accounts",
+          "input": "code,currency,normal_side,purpose",
+          "role": "ADMIN",
+          "effect": "Crea maestro o nueva revisión; no altera documentos ya confirmados",
+          "error": "409 referencia duplicada, vigencia incompatible o relación ajena"
+        }
+      ]
+    }
+  ],
+  "critical_scenarios": [
+    {
+      "id": "CRIT-01",
+      "name": "Conservación",
+      "given": "Cuenta A 100; B 0; 50 peticiones de 3",
+      "when": "Transferir concurrentemente con claves distintas",
+      "then": "33 éxitos; A=1, B=99, total=100; ninguna negativa"
+    },
+    {
+      "id": "CRIT-02",
+      "name": "Reintento tras commit",
+      "given": "Transferencia publicada, respuesta perdida",
+      "when": "Repetir misma clave 10 veces",
+      "then": "Un asiento, una transferencia"
+    },
+    {
+      "id": "CRIT-03",
+      "name": "Fondos retenidos",
+      "given": "A=100 y hold=80",
+      "when": "Transferir 30",
+      "then": "409; posted=100,held=80"
+    },
+    {
+      "id": "CRIT-04",
+      "name": "Reverso",
+      "given": "A envía 40 a B con fondos suficientes para devolver",
+      "when": "Aprobar reverso con actor distinto",
+      "then": "Original intacto y nuevo asiento opuesto equilibrado"
+    }
+  ],
+  "entities": [
+    "customers",
+    "ledger_accounts",
+    "journal_entries",
+    "postings",
+    "account_balances",
+    "holds",
+    "transfers",
+    "adjustment_requests",
+    "reconciliation_runs",
+    "reversal_requests"
+  ],
+  "controls": 83
+}

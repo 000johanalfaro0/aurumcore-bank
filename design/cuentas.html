@@ -1,0 +1,88 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuentas y saldos · Aurumcore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+</head><body><div class="app">
+<aside class="side">
+  <div class="marca"><b>Aurumcore</b><span>v0.1</span></div>
+  <nav class="nav">
+    <div class="nav-t">OPERACION</div>
+    <a href="cuentas.html" aria-current="page">Cuentas y saldos <em>128</em></a>
+    <a href="#">Transferencias <em>41</em></a>
+    <a href="#">Retenciones <em>6</em></a>
+    <a href="libro-mayor.html">Libro mayor</a>
+    <div class="nav-t">FASE 2</div>
+    <a class="f2" href="#">Clientes <em>—</em></a>
+    <a class="f2" href="#">Ajustes y reversos <em>—</em></a>
+  </nav>
+  <div class="side-pie">FASE 1 · 4 modulos</div>
+</aside>
+<div style="display:flex;flex-direction:column;min-width:0">
+<header class="head">
+  <div class="org"><i>Entidad</i><b>Banco Meridiano</b><i>&#9662;</i></div>
+  <span class="chip">DEMO</span>
+  <div class="head-d">
+    <span>Cierre contable <b>2026-09-10 · 18:00</b></span>
+    <span>Rol <b>OPERADOR</b></span>
+    <span><b>c.villalobos</b></span>
+  </div>
+</header>
+<div class="main">
+  <div class="titulo"><h1>Cuentas y saldos</h1><span>128 cuentas · 2 monedas</span></div>
+  <p class="sub">El disponible descuenta las retenciones vigentes. Los saldos se calculan desde el libro mayor, nunca se editan a mano.</p>
+  <div class="barra">
+    <input class="inp" placeholder="Buscar por IBAN, titular o referencia">
+    <button class="btn">Moneda: todas</button>
+    <button class="btn">Con retencion</button>
+    <button class="btn btn-p der">Nueva transferencia</button>
+  </div>
+  <div class="caja">
+  <table>
+    <thead><tr>
+      <th style="width:200px">CUENTA</th><th>TITULAR</th><th style="width:52px">MONEDA</th>
+      <th class="r" style="width:118px">CONTABLE</th><th class="r" style="width:110px">RETENIDO</th>
+      <th class="r" style="width:118px">DISPONIBLE</th><th class="r" style="width:120px">ULTIMO MOV.</th>
+    </tr></thead>
+    <tbody>
+      <tr aria-selected="true">
+        <td class="mono">ES76 2100 4471 8802 3391</td><td class="tit">Martina Alcazar Ferrer</td>
+        <td class="mon">EUR</td><td class="num">12.480,00</td><td class="num ret">800,00</td>
+        <td class="num tit">11.680,00</td><td class="num mut">10 sep 14:22</td></tr>
+      <tr><td class="mono">ES76 2100 9032 1140 5528</td><td class="tit">Comercial Vega Andrade SL</td>
+        <td class="mon">EUR</td><td class="num">3.200,50</td><td class="num cero">0,00</td>
+        <td class="num tit">3.200,50</td><td class="num mut">10 sep 11:05</td></tr>
+      <tr><td class="mono">US64 SVBK 1180 2299 0417</td><td class="tit">Northbay Freight LLC</td>
+        <td class="mon">USD</td><td class="num">45.900,00</td><td class="num ret">5.000,00</td>
+        <td class="num tit">40.900,00</td><td class="num mut">09 sep 19:47</td></tr>
+      <tr><td class="mono">ES76 2100 3346 6620 1173</td><td class="tit">Delta Logistica Andina SAC</td>
+        <td class="mon">EUR</td><td class="num">63.220,00</td><td class="num cero">0,00</td>
+        <td class="num tit">63.220,00</td><td class="num mut">09 sep 16:30</td></tr>
+      <tr><td class="mono">ES76 2100 5528 3301 7764</td><td class="tit">Talleres Ibarra e Hijos SA</td>
+        <td class="mon">EUR</td><td class="num">27.315,80</td><td class="num ret">12.000,00</td>
+        <td class="num tit">15.315,80</td><td class="num mut">09 sep 09:12</td></tr>
+      <tr><td class="mono">ES76 2100 7719 0034 2286</td><td class="tit">Renata Espinoza Duarte</td>
+        <td class="mon">EUR</td><td class="num">1.905,40</td><td class="num ret">250,00</td>
+        <td class="num tit">1.655,40</td><td class="num mut">08 sep 20:58</td></tr>
+      <tr><td class="mono">US64 SVBK 4402 9917 3308</td><td class="tit">Aurora Textiles Corp</td>
+        <td class="mon">USD</td><td class="num">8.140,00</td><td class="num cero">0,00</td>
+        <td class="num tit">8.140,00</td><td class="num mut">08 sep 15:41</td></tr>
+      <tr><td class="mono">ES76 2100 6613 7745 0902</td><td class="tit">Josefina Marroquin Paz</td>
+        <td class="mon">EUR</td><td class="num">890,25</td><td class="num cero">0,00</td>
+        <td class="num tit">890,25</td><td class="num mut">08 sep 10:03</td></tr>
+      <tr><td class="mono">ES76 2100 8890 2217 4460</td><td class="tit">Constructora Peniel Ltda</td>
+        <td class="mon">EUR</td><td class="num">104.775,15</td><td class="num ret">30.000,00</td>
+        <td class="num tit">74.775,15</td><td class="num mut">07 sep 18:20</td></tr>
+      <tr><td class="mono">US64 SVBK 7731 0028 9915</td><td class="tit">Halden Marine Services Inc</td>
+        <td class="mon">USD</td><td class="num">19.006,72</td><td class="num cero">0,00</td>
+        <td class="num tit">19.006,72</td><td class="num mut">07 sep 08:55</td></tr>
+    </tbody>
+  </table>
+  <div class="pie-t"><b>10</b> de <b>128</b> · <span>EUR <b class="mono">213.787,10</b> disponible</span>
+    · <span>USD <b class="mono">68.046,72</b> disponible</span>
+    <span class="der">Retenido total <b class="mono ret">48.050,00</b></span></div>
+  </div>
+</div>
+</div></div></body></html>

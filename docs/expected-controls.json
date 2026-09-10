@@ -1,0 +1,617 @@
+[
+  {
+    "id": "AUTH01",
+    "route": "/login",
+    "label": "Iniciar sesión",
+    "operation": "Navegación GET /auth/login",
+    "permission": "PUBLIC",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "AUTH02",
+    "route": "/registro",
+    "label": "Crear cuenta",
+    "operation": "Navegación GET /auth/register",
+    "permission": "PUBLIC",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "AUTH03",
+    "route": "/recuperar-acceso",
+    "label": "Recuperar acceso",
+    "operation": "Navegación GET /auth/recover",
+    "permission": "PUBLIC",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "AUTH04",
+    "route": "/invitaciones/aceptar",
+    "label": "Aceptar invitación",
+    "operation": "POST /api/v1/invitations/accept",
+    "permission": "VERIFIED_USER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "ORG01",
+    "route": "/organizaciones",
+    "label": "Cambiar organización",
+    "operation": "Local + GET /api/v1/me/organizations",
+    "permission": "AUTHENTICATED",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "ORG02",
+    "route": "/organizaciones/nueva",
+    "label": "Crear organización",
+    "operation": "POST /api/v1/organizations",
+    "permission": "VERIFIED_USER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "ORG03",
+    "route": "/configuracion/organizacion",
+    "label": "Guardar organización",
+    "operation": "PATCH /settings/organization",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "MEM01",
+    "route": "/configuracion/equipo",
+    "label": "Invitar integrante",
+    "operation": "POST /invitations",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "MEM02",
+    "route": "/configuracion/equipo",
+    "label": "Revocar invitación",
+    "operation": "POST /invitations/{id}/revoke",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "MEM03",
+    "route": "/configuracion/equipo",
+    "label": "Modificar permisos",
+    "operation": "PUT /memberships/{id}/roles",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "MEM04",
+    "route": "/configuracion/equipo",
+    "label": "Suspender integrante",
+    "operation": "POST /memberships/{id}/suspend",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "MEM05",
+    "route": "/configuracion/equipo",
+    "label": "Transferir propiedad",
+    "operation": "POST /ownership-transfer",
+    "permission": "OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "SES01",
+    "route": "/perfil/seguridad",
+    "label": "Configurar MFA",
+    "operation": "Navegación GET /auth/account",
+    "permission": "AUTHENTICATED",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "SES02",
+    "route": "/perfil/seguridad",
+    "label": "Revocar sesión",
+    "operation": "POST /api/v1/me/sessions/{id}/revoke",
+    "permission": "AUTHENTICATED",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "SES03",
+    "route": "shell",
+    "label": "Cerrar sesión",
+    "operation": "POST /auth/logout",
+    "permission": "AUTHENTICATED",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "CON01",
+    "route": "/configuracion/integraciones",
+    "label": "Conectar proveedor",
+    "operation": "POST /connections/{provider}/authorize",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "CON02",
+    "route": "/configuracion/integraciones",
+    "label": "Desconectar proveedor",
+    "operation": "POST /connections/{id}/disconnect",
+    "permission": "OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "AUD01",
+    "route": "/auditoria",
+    "label": "Filtrar auditoría",
+    "operation": "GET /audit-events",
+    "permission": "AUDITOR,OWNER,ADMIN",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "JOB01",
+    "route": "/tareas",
+    "label": "Consultar tarea",
+    "operation": "GET /jobs/{id}",
+    "permission": "AUTHORIZED_SCOPE",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "EXP01",
+    "route": "/tareas",
+    "label": "Descargar resultado",
+    "operation": "POST /jobs/{id}/download",
+    "permission": "AUTHORIZED_SCOPE",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "FILE01",
+    "route": "selector de documentos",
+    "label": "Cargar archivo",
+    "operation": "POST /files/uploads + PUT URL + POST /files/{id}/complete",
+    "permission": "AUTHORIZED_SCOPE",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DASH01",
+    "route": "/dashboard",
+    "label": "Actualizar resumen",
+    "operation": "GET /dashboard",
+    "permission": "AUTHENTICATED_MEMBER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-READ",
+    "route": "/clientes",
+    "label": "READ",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-LOCAL-OPEN",
+    "route": "/clientes",
+    "label": "LOCAL-OPEN",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-LOCAL-CANCEL",
+    "route": "/clientes",
+    "label": "LOCAL-CANCEL",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-FILTER",
+    "route": "/clientes",
+    "label": "FILTER",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-NEXT",
+    "route": "/clientes",
+    "label": "NEXT",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-DETAIL",
+    "route": "/clientes",
+    "label": "DETAIL",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-RETRY",
+    "route": "/clientes",
+    "label": "RETRY",
+    "permission": "TELLER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM01-A01",
+    "route": "/clientes",
+    "label": "Crear cliente",
+    "operation": "POST /customers",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-READ",
+    "route": "/cuentas",
+    "label": "READ",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-LOCAL-OPEN",
+    "route": "/cuentas",
+    "label": "LOCAL-OPEN",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-LOCAL-CANCEL",
+    "route": "/cuentas",
+    "label": "LOCAL-CANCEL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-FILTER",
+    "route": "/cuentas",
+    "label": "FILTER",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-NEXT",
+    "route": "/cuentas",
+    "label": "NEXT",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-DETAIL",
+    "route": "/cuentas",
+    "label": "DETAIL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-RETRY",
+    "route": "/cuentas",
+    "label": "RETRY",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM02-A01",
+    "route": "/cuentas",
+    "label": "Abrir cuenta",
+    "operation": "POST /ledger-accounts",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-READ",
+    "route": "/transferencias",
+    "label": "READ",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-LOCAL-OPEN",
+    "route": "/transferencias",
+    "label": "LOCAL-OPEN",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-LOCAL-CANCEL",
+    "route": "/transferencias",
+    "label": "LOCAL-CANCEL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-FILTER",
+    "route": "/transferencias",
+    "label": "FILTER",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-NEXT",
+    "route": "/transferencias",
+    "label": "NEXT",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-DETAIL",
+    "route": "/transferencias",
+    "label": "DETAIL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-RETRY",
+    "route": "/transferencias",
+    "label": "RETRY",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-A01",
+    "route": "/transferencias",
+    "label": "Confirmar transferencia",
+    "operation": "POST /transfers",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM03-A02",
+    "route": "/transferencias",
+    "label": "Solicitar reverso",
+    "operation": "POST /transfers/{id}/reversal-requests",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-READ",
+    "route": "/retenciones",
+    "label": "READ",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-LOCAL-OPEN",
+    "route": "/retenciones",
+    "label": "LOCAL-OPEN",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-LOCAL-CANCEL",
+    "route": "/retenciones",
+    "label": "LOCAL-CANCEL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-FILTER",
+    "route": "/retenciones",
+    "label": "FILTER",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-NEXT",
+    "route": "/retenciones",
+    "label": "NEXT",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-DETAIL",
+    "route": "/retenciones",
+    "label": "DETAIL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-RETRY",
+    "route": "/retenciones",
+    "label": "RETRY",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-A01",
+    "route": "/retenciones",
+    "label": "Crear retención",
+    "operation": "POST /holds",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM04-A02",
+    "route": "/retenciones",
+    "label": "Liberar retención",
+    "operation": "POST /holds/{id}/release",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-READ",
+    "route": "/aprobaciones",
+    "label": "READ",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-LOCAL-OPEN",
+    "route": "/aprobaciones",
+    "label": "LOCAL-OPEN",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-LOCAL-CANCEL",
+    "route": "/aprobaciones",
+    "label": "LOCAL-CANCEL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-FILTER",
+    "route": "/aprobaciones",
+    "label": "FILTER",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-NEXT",
+    "route": "/aprobaciones",
+    "label": "NEXT",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-DETAIL",
+    "route": "/aprobaciones",
+    "label": "DETAIL",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-RETRY",
+    "route": "/aprobaciones",
+    "label": "RETRY",
+    "permission": "TELLER,TREASURY_APPROVER,ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-A01",
+    "route": "/aprobaciones",
+    "label": "Solicitar ajuste",
+    "operation": "POST /adjustment-requests",
+    "permission": "TELLER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-A02",
+    "route": "/aprobaciones",
+    "label": "Aprobar ajuste",
+    "operation": "POST /adjustment-requests/{id}/approve",
+    "permission": "TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM05-A03",
+    "route": "/aprobaciones",
+    "label": "Aprobar reverso",
+    "operation": "POST /transfers/{id}/approve-reversal",
+    "permission": "TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-READ",
+    "route": "/libro-mayor",
+    "label": "READ",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-LOCAL-OPEN",
+    "route": "/libro-mayor",
+    "label": "LOCAL-OPEN",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-LOCAL-CANCEL",
+    "route": "/libro-mayor",
+    "label": "LOCAL-CANCEL",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-FILTER",
+    "route": "/libro-mayor",
+    "label": "FILTER",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-NEXT",
+    "route": "/libro-mayor",
+    "label": "NEXT",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-DETAIL",
+    "route": "/libro-mayor",
+    "label": "DETAIL",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-RETRY",
+    "route": "/libro-mayor",
+    "label": "RETRY",
+    "permission": "ACCOUNT_AUDITOR,TREASURY_APPROVER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-A01",
+    "route": "/libro-mayor",
+    "label": "Conciliar saldos",
+    "operation": "POST /reconciliation-runs",
+    "permission": "ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM06-A02",
+    "route": "/libro-mayor",
+    "label": "Exportar libro",
+    "operation": "POST /exports",
+    "permission": "ACCOUNT_AUDITOR",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-READ",
+    "route": "/configuracion/negocio",
+    "label": "READ",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-LOCAL-OPEN",
+    "route": "/configuracion/negocio",
+    "label": "LOCAL-OPEN",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-LOCAL-CANCEL",
+    "route": "/configuracion/negocio",
+    "label": "LOCAL-CANCEL",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-FILTER",
+    "route": "/configuracion/negocio",
+    "label": "FILTER",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-NEXT",
+    "route": "/configuracion/negocio",
+    "label": "NEXT",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-DETAIL",
+    "route": "/configuracion/negocio",
+    "label": "DETAIL",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-RETRY",
+    "route": "/configuracion/negocio",
+    "label": "RETRY",
+    "permission": "ADMIN,OWNER",
+    "status": "NOT_RUN"
+  },
+  {
+    "id": "DOM07-A01",
+    "route": "/configuracion/negocio",
+    "label": "Configurar cuenta de contrapartida",
+    "operation": "POST /ledger-counterpart-accounts",
+    "permission": "ADMIN",
+    "status": "NOT_RUN"
+  }
+]

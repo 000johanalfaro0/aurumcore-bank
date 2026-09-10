@@ -1,0 +1,34 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: aurumcore-backend
+
+  # Conexion de EJECUCION: rol sin bypass de RLS. Nunca el dueno del esquema.
+  # Los valores por defecto son los de desarrollo local. En el servidor se
+  # sobrescriben con variables de entorno; no hay contrasenas de produccion aqui.
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/aurumcore?currentSchema=aurumcore}
+    username: ${DB_USUARIO:aurum_app}
+    password: ${DB_CLAVE:app_local_dev}
+    hikari:
+      maximum-pool-size: ${DB_POOL:10}
+
+  # Flyway usa su PROPIA conexion, con el rol dueno del esquema.
+  flyway:
+    enabled: true
+    url: ${DB_URL_MIGRACION:jdbc:postgresql://localhost:5433/aurumcore}
+    user: ${DB_USUARIO_MIGRACION:aurum_migrator}
+    password: ${DB_CLAVE_MIGRACION:migrator_local_dev}
+    schemas: aurumcore
+    default-schema: aurumcore
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always

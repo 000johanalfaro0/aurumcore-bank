@@ -1,0 +1,27 @@
+/* aurumcore-bank — tokens de diseño. Propios de esta app, no se reutilizan. */
+:root{
+  /* neutro piedra cálido */
+  --n-000:#FFFFFF; --n-025:#FAFAF9; --n-050:#F5F5F4; --n-100:#EFEEEC;
+  --n-200:#E4E2DF; --n-300:#D2CFCB; --n-400:#A8A29E; --n-500:#78716C;
+  --n-700:#44403C; --n-800:#292524; --n-900:#1C1917;
+  /* acento verde azulado profundo */
+  --acc-700:#0D5C55; --acc-600:#116E66; --acc-050:#E6F0EF;
+  /* semánticos */
+  --abono:#166534; --cargo:#9C3A2C; --retenido:#B45309;
+  --abono-bg:#EDF5EF; --cargo-bg:#F8EDEB; --retenido-bg:#FCF2E4;
+  /* forma: radios casi rectos, bordes finos, CERO sombras */
+  --r:2px; --bd:1px solid var(--n-200); --bd-fuerte:1px solid var(--n-300);
+  /* densidad compacta */
+  --fila:32px; --gap:12px;
+  --fs-xs:11px; --fs-sm:12px; --fs:13px; --fs-md:14px; --fs-lg:18px; --fs-xl:22px;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--n-050);color:var(--n-900);font:var(--fs)/1.45 var(--sans);
+  -webkit-font-smoothing:antialiased}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
+  letter-spacing:-.01em;white-space:nowrap}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+a{color:var(--acc-700)}
+:focus-visible{outline:2px solid var(--acc-600);outline-offset:1px}

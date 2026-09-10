@@ -1,0 +1,74 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Libro mayor · Aurumcore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css"><link rel="stylesheet" href="asiento.css">
+</head><body><div class="app">
+<aside class="side">
+  <div class="marca"><b>Aurumcore</b><span>v0.1</span></div>
+  <nav class="nav">
+    <div class="nav-t">OPERACION</div>
+    <a href="cuentas.html">Cuentas y saldos <em>128</em></a>
+    <a href="#">Transferencias <em>41</em></a>
+    <a href="#">Retenciones <em>6</em></a>
+    <a href="libro-mayor.html" aria-current="page">Libro mayor</a>
+    <div class="nav-t">FASE 2</div>
+    <a class="f2" href="#">Clientes <em>—</em></a>
+    <a class="f2" href="#">Ajustes y reversos <em>—</em></a>
+  </nav>
+  <div class="side-pie">FASE 1 · 4 modulos</div>
+</aside>
+<div style="display:flex;flex-direction:column;min-width:0">
+<header class="head">
+  <div class="org"><i>Entidad</i><b>Banco Meridiano</b><i>&#9662;</i></div>
+  <span class="chip">DEMO</span>
+  <div class="head-d">
+    <span>Cierre contable <b>2026-09-10 · 18:00</b></span>
+    <span>Rol <b>OPERADOR</b></span>
+    <span><b>c.villalobos</b></span>
+  </div>
+</header>
+<div class="main">
+  <div class="titulo"><h1>Libro mayor</h1><span>asiento AS-2026-0000481</span></div>
+  <p class="sub">Cada transferencia produce un asiento por partida doble. La suma siempre cierra en cero; si no cerrara, la operacion no se habria confirmado.</p>
+  <div class="caja">
+    <div class="as-cab">
+      <span class="id">AS-2026-0000481</span>
+      <div class="campo"><i>OPERACION</i><b class="mono">TRF-9F3C21A0</b></div>
+      <div class="campo"><i>FECHA VALOR</i><b class="mono">2026-09-10 14:22:07</b></div>
+      <div class="campo"><i>ASENTADO POR</i><b>c.villalobos</b></div>
+      <span class="sello">CONFIRMADO</span>
+      <span class="sello idem">3 entregas recibidas &middot; 1 aplicada</span>
+    </div>
+    <table class="as-tab">
+      <thead><tr>
+        <th style="width:64px">CTA</th><th>CONCEPTO</th><th style="width:210px">CONTRAPARTIDA</th>
+        <th class="dh r">DEBE</th><th class="dh r">HABER</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="cuenta-c">5710</td>
+          <td>Cargo en cuenta de origen</td>
+          <td class="mono mut">ES76 2100 4471 8802 3391</td>
+          <td class="dh num d">1.250,00</td><td class="dh num vacio">&mdash;</td></tr>
+        <tr><td class="cuenta-c">5710</td>
+          <td>Abono en cuenta de destino</td>
+          <td class="mono mut">ES76 2100 9032 1140 5528</td>
+          <td class="dh num vacio">&mdash;</td><td class="dh num h">1.247,00</td></tr>
+        <tr><td class="cuenta-c">7000</td>
+          <td>Comision por transferencia inmediata</td>
+          <td class="mono mut">Ingresos &middot; comisiones EUR</td>
+          <td class="dh num vacio">&mdash;</td><td class="dh num h">3,00</td></tr>
+      </tbody>
+    </table>
+    <div class="cuadre">
+      <div class="et">SUMAS DEL ASIENTO</div>
+      <div class="tot">1.250,00</div>
+      <div class="tot">1.250,00</div>
+      <div class="res"><s>&#10003;</s> DESCUADRE 0,00</div>
+    </div>
+    <div class="nota">La clave de idempotencia <b class="mono">TRF-9F3C21A0</b> recibio <b>3</b> entregas del canal de pagos. Se aplico <b>1</b>; las otras <b>2</b> quedaron registradas como duplicadas sin efecto contable.</div>
+  </div>
+</div>
+</div></div></body></html>

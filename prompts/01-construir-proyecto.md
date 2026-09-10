@@ -1,0 +1,7 @@
+# Construir proyecto 09 — aurumcore-bank
+
+Copia este bloque al agente desde la raíz de esta carpeta:
+
+> Implementa aurumcore-bank de principio a fin. Lee AGENTS.md, SPEC.md y los diez documentos de docs antes de cambiar contratos. Sigue F0→F8 de docs/08-PLAN.md y mantén docs/PROGRESO.md con estado verificable. Empieza comprobando archivos reales: hoy puede haber solo especificación. Crea en F0 el runner scripts/project.mjs y los manifiestos separados descritos en docs/09-OPERACION.md. Construye módulos verticales frontend→API→DB, con autenticación, memberships, RBAC/scopes, RLS y aislamiento ALFA/BETA desde el comienzo. Respeta frontend/backend separados y dependencias dirigidas. Implementa cada control de docs/expected-controls.json y cada escenario CRIT. Prueba persistencia tras recarga y fallos concurrentes. Permite fixtures sintéticos y proveedores contract declarados para pruebas; no finjas integración sandbox. Continúa hasta completar el contrato local y verificar las integraciones disponibles; documenta bloqueos externos precisos sin reducir alcance. Ejecuta luego los prompts02,03,04 y entrega evidencia con comandos/exit codes. No publiques, envíes campañas ni actives cobros reales por esta instrucción.
+
+Primeros entregables: estructura modular, versiones fijadas, runner funcional, OpenAPI, entorno local con readiness y registro de progreso. No generar de golpe pantallas que aún no tengan contratos y casos de uso definidos.

@@ -1,0 +1,3 @@
+# Reanudar sin perder contexto — aurumcore-bank
+
+> Continúa el proyecto 09. Lee AGENTS.md, SPEC.md, docs/08-PLAN.md y docs/PROGRESO.md. Verifica el árbol y los resultados actuales antes de confiar en casillas previas. Identifica última fase realmente comprobada, siguiente dependencia y archivos afectados. Conserva cambios ajenos y arquitectura modular. Reejecuta solo la comprobación necesaria para confirmar punto de partida, luego termina el trabajo pendiente. No reinicies el proyecto, no reduzcas alcance ni declares entregado por una nota de una sesión anterior. Si no existe código, empieza F0. Actualiza PROGRESO con comando siguiente, evidencia y blockers al terminar.
