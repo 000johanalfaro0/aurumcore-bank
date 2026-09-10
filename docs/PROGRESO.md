@@ -46,6 +46,27 @@ Las 9 comprobaciones de F0:
 2. **`/api/salud` devolvia 500.** El rol de ejecucion no tenia permiso de lectura sobre la
    tabla de historial de Flyway. Se anadio un `grant select` explicito, solo lectura.
 
+### Infraestructura externa: **HECHA Y VERIFICADA** (2026-09-10)
+
+| Pieza | Estado | Comprobado con |
+|---|---|---|
+| Repositorio | https://github.com/000johanalfaro0/aurumcore-bank (publico) | `gh repo view` |
+| Schema en Supabase | `aurumcore` en `portafolio-shared` (fnfptbjelhayysbuccjh) | consulta a pg_roles y pg_namespace |
+| Roles | `aurum_migrator` y `aurum_app`, ninguno superusuario, ninguno con bypass de RLS | consulta a pg_roles |
+| Migraciones en Supabase | V1 y V2 aplicadas por Flyway al arrancar | `/api/salud` devolvio migracionMaxima 2 |
+| RLS en Supabase | activado Y forzado en entidad, usuario y cuenta; 1 politica cada una | consulta a pg_class |
+| Credenciales | en `.env.local`, ignorado por git. No se pueden releer desde Supabase | `git check-ignore` |
+
+Prueba real del contenedor contra Supabase:
+
+```
+docker run --env-file .env.local aurumcore-backend:0.1.0
+curl http://127.0.0.1:8083/api/salud
+{"estado":"ok","rol":"aurum_app","esquema":"aurumcore","migracionMaxima":"2"}
+```
+
+PENDIENTE: la cuenta de Koyeb. La crea el usuario. Ver `docs/DESPLIEGUE.md`.
+
 ### Lo siguiente (F1)
 
 Todavia NO existe: frontend, autenticacion, transferencias, retenciones ni libro mayor.

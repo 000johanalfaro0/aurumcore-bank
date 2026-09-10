@@ -12,3 +12,5 @@ node_modules/
 # Sistema
 .DS_Store
 Thumbs.db
+.credenciales.tmp
+.sql.tmp
